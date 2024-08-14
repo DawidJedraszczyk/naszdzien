@@ -1,44 +1,63 @@
 <style>
-    header {
-        background-color: #333; /* Dark background to match your navbar */
-        color: white; /* White text color */
-    }
     .navbar {
-        background-color: #333; /* Dark navbar background */
+        background-color: #f9f9f9;
+        position: fixed;
+        top: 0;
+        height: 100px;
+        z-index: 100;
     }
-    .navbar-brand, .nav-link {
-        color: white !important; /* Ensuring the text is white */
+    .navbar-brand {
+        color: black !important;
+        font-size: 36px;
+    }
+    .nav-link {
+        color: black !important;
+
+    }
+    .nav-link:hover{
+        text-decoration: underline;
+        text-decoration-color: #c2b280;
+        text-decoration-thickness: 2px;
     }
 </style>
 <header>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid w-75">
-            <a class="navbar-brand" href="#">NaszDzień</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">O nas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Produkty</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">FAQ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Kontakt</a>
-                    </li>
-                    <li class="nav-item border border-white rounded">
-                        <a class="nav-link" href="#">Portal</a>
-                    </li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-expand-lg w-100">
+        <div class="container-fluid w-75 justify-content-around">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">O nas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Produkty</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Oferta</a>
+                </li>
+            </ul>
+
+            <a class="navbar-brand allura-regular" href="#">Nasz<span class="text-gradient">Dzień</span></a>
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Zaloguj</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Zarejestruj</a>
+                </li>
+            </ul>
+{#            <div class="" id="navbarNav">#}
+{#                <ul class="navbar-nav">#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="#">Zaloguj się</a>#}
+{#                    </li>#}
+{#                    <li class="nav-item green-border rounded">#}
+{#                        <a class="nav-link" style="color: white !important;" href="#">Załóż konto</a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
         </div>
     </nav>
 </header>

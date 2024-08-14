@@ -126,10 +126,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 
-STATIC_ROOT = '/home/dawid/Public/embryo/static'
-MEDIA_ROOT = '/home/dawid/Public/embryo/media'
-STATIC_URL = '/staticembryodep/'
-MEDIA_URL = '/media/'
+STATIC_ROOT = '/home/dawid/Public/naszdzien/naszdzien/apps/landingpage/static/'
+MEDIA_ROOT = '/home/dawid/Public/naszdzien/naszdzien/media/'
+STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
 
 
 # Default primary key field type
