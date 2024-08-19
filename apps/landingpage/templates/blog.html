@@ -1,0 +1,47 @@
+{% load static %}
+
+<style>
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+</style>
+
+<section id="blog" class="w-100 d-flex flex-column align-items-center">
+    <h3 class="allura-regular mb-0" style="padding-top: 80px; font-size: 60px;">Odkrywaj <span class="text-gradient">wyjątkowe pomysły</span></h3>
+    <span class="allura-regular" style="font-size: 30px; margin-bottom: 80px;">Regularnie publikujemy nowe treści</span>
+
+
+    <div class="swiper mySwiper blog-posts">
+            <div class="swiper-wrapper">
+            {% for post in blog_posts %}
+                <div class="swiper-slide blog-post d-flex flex-column align-items-center justify-content-center">
+                    <div class="container">
+                        <img style="width: 100%; height: 200px; object-fit: cover;" src="{{ post.image.url }}" alt="blog image">
+                        <div class="blog-title mt-2" style="font-size:24px; ">{{ post.title }}</div>
+                        <div class="blog-description mt-2" style="text-align: justify;">{{ post.description }}</div>
+                        <a href="{{ post.get_absolute_url }}" class="d-flex text-gradient allura-regular mt-2 w-100 justify-content-end" style="font-size: 30px; border:none; color: #f3b600; font-weight: bold;">Przeczytaj artykuł</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+

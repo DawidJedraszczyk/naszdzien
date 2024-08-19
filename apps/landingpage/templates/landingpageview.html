@@ -19,6 +19,8 @@
     {% include 'main.html' %}
     {% include 'about_us.html' %}
     {% include 'products.html' %}
+    {% include 'offer.html' %}
+    {% include 'blog.html' %}
 
 {% endblock content %}
 
@@ -30,6 +32,13 @@
 
 {% block extra_js %}
     <script>
-
+        var swiper = new Swiper(".blog-posts", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
     </script>
 {% endblock extra_js %}
