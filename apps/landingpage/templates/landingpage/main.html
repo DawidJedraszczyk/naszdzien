@@ -1,0 +1,49 @@
+{% load static %}
+<style>
+    main {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    main .img{
+        background-image: url("{% static 'img/main.jpg' %}");
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: -2;
+        opacity: 0.1;
+    }
+
+    .content {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .catch-phrase {
+        font-size: clamp(2rem, 6.5vw, 6rem);
+        font-weight: 500;
+        text-align: center;
+    }
+
+</style>
+<main>
+    <div class="img"></div>
+    <div class="content">
+        <h1 class="catch-phrase d-flex flex-column align-items-center justify-content-center">
+            <span class="mb-2 allura-regular">Twórz <span class="text-gradient">wspomnienia razem</span></span>
+            <i style="font-size: clamp(1.5rem, 3.5vw, 6rem);" class="allura-regular">dziel się chwilą z bliskimi!</i>
+        </h1>
+    </div>
+
+</main>

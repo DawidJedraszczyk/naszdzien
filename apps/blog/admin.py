@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Category, Tag, PostTag
+
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -9,4 +10,8 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     raw_id_fields = ('author',)
     date_hierarchy = 'created'
-    ordering = ('status', 'created')
+    ordering = ('view_count', 'status', 'created')
+
+admin.site.register(Category)
+admin.site.register(Tag)
+admin.site.register(PostTag)

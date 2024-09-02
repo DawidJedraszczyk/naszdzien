@@ -1,0 +1,42 @@
+{% load static %}
+<style>
+    #produkty {
+        width: 100%;
+        padding: 20px 0px;
+    }
+    @media (max-width:1100px) {
+      .product {
+        flex-direction: column;
+        padding: 0;
+      }
+
+      .product .body {
+        margin: 30px 0;
+        padding: 0 !important;
+      }
+    }
+</style>
+
+<section id="produkty" class="w-100 d-flex flex-column align-items-center">
+    <h3 class="allura-regular mb-0" style="padding-top: 80px; font-size: 60px; text-align: center;">Znajdź <span class="text-gradient">idealne produkty</span> dla siebie</h3>
+    <span class="allura-regular" style="font-size: 30px; margin-bottom: 80px; text-align: center">Każdy produkt zrobiony z myślą o Tobie</span>
+
+    {% for product in products %}
+        <div class="product d-flex justify-content-center align-items-center w-100">
+            <div class="d-flex justify-content-center align-items-center w-50">
+                {% for product_image in product.images.all %}
+                    <img loading="lazy" decoding="async"  style="width: 50%; height: 100%; object-fit: cover;" src="{{ product_image.image.url }}" alt="{{ product_image.alt }}">
+                {% endfor %}
+            </div>
+            <div style="min-height: 250px; padding: 0 10%;" class="body d-flex flex-column justify-content-center align-items-center w-50">
+                <div class="title" style="width: 100%; max-width: 500px; text-align:start; font-size:24px; ">{{ product.name }}</div>
+                <span class="text" style="text-align: justify; max-width: 500px;">
+                    {{ product.description }}
+                </span>
+                <a href="{{ product.get_absolute_url }}" class="d-flex text-gradient allura-regular" style="width: 100%; max-width: 500px; font-size: 30px; border:none; color: #f3b600; font-weight: bold;">Sprawdź szczegóły</a>
+            </div>
+
+        </div>
+    {% endfor %}
+
+</section>

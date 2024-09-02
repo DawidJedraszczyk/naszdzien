@@ -1,0 +1,214 @@
+{% load static %}
+
+<style>
+    .swiper {
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 300px;
+      height: 300px;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+    }
+
+    .invitation {
+        height: 550px;
+        padding: 10px;
+        background-color: #fff;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+        position: relative;
+    }
+
+    .invitation h5 {
+        position: absolute;
+        bottom: 100px;
+        width: 100%;
+        left: 0;
+        text-align: center;
+    }
+
+    .invitation a {
+        position: absolute;
+        bottom: 50px;
+        left: 13%;
+        width: 74%;
+        text-align: center;
+    }
+
+    main img {
+        max-height: 500px;
+        width: 100%;
+        object-fit: cover;
+        object-position: 100% 25%;
+    }
+
+    .invitation-button:hover {
+        color: white;
+    }
+
+    .accordion-button:not(.collapsed) {
+        color: black;
+        background-color: #fffaea;
+    }
+
+    .accordion-button:focus {
+        border-color: #fffaea !important;
+        box-shadow: 0 0 0 .25rem #fff5d4;
+    }
+
+</style>
+
+<main>
+	<section class="section">
+		<div class="container">
+        <img loading="lazy" decoding="async" src="{% static 'img/invitations/phone-with-invitation-3.svg' %}" alt="{{ product_image.alt }}">
+			<div class="row">
+				<div class="col-lg-12">
+                    <h1 class="mt-4">{{ product.name }}</h1>
+                    <span>
+                        Jest to nowoczesne narzędzie umożliwiające wysyłanie spersonalizowanych zaproszeń na różnego rodzaju wydarzenia za pośrednictwem internetu. Ta forma komunikacji z gośćmi zyskuje coraz większą popularność, szczególnie w dobie cyfryzacji i wzrastającej świadomości ekologicznej. W tym artykule przeprowadzimy Cię przez wszystkie aspekty związane z tworzeniem, wysyłaniem i zarządzaniem zaproszeniami online, od korzyści po ceny i funkcje personalizacji.
+                    </span>
+
+                    <h4 class="mt-4">Spis treści</h4>
+                    <ul>
+                        <li><a href="#korzysci">Korzyści z wykorzenia zaproszeń elektronicznych</a></li>
+                        <li><a href="#rodzaje">Rodzaje zaproszeń</a></li>
+                        <li><a href="#proces_tworzenia">Jak działa proces tworzenia zaproszenia elektronicznego?</a></li>
+                        <li><a href="#funkcje_i_personalizacja">Funkcje i Opcje Personalizacji</a></li>
+                        <li><a href="#przyklady">Przykłady i inspiracje</a></li>
+                        <li><a href="#Oferta">Oferta</a></li>
+                        <li><a href="#opinie">Opinie i referencje klientów</a></li>
+                        <li><a href="#faq">FAQ - Najczęściej Zadawane Pytania</a></li>
+                        <li><a href="#integracja">Integracje i Współpraca z Inny Mi Narzędziami</a></li>
+                        <li><a href="#pomoc">Pomoc i Wsparcie Techniczne</a></li>
+                        <li><a href="#blog">Blog i aktualności</a></li>
+                    </ul>
+
+
+                    <h2 class="mt-4" id="korzysci">Korzyści z wykorzystania zaproszeń elektronicznych</h2>
+                    <span>
+                        Zaproszenia elektroniczne przynoszą wiele korzyści zarówno organizatorom wydarzeń, jak i zaproszonym gościom. Przykłady przedstawiamy poniżej:
+                        <ul>
+                            <li>
+                                <h3>Oszczędność czasu i pieniędzy</h3>
+                                <span>
+                                    Nasze rozwiązanie eliminuje konieczność drukowania, pakowania oraz wysyłki lub osobistego dostarczenia zaproszeń tradycyjnych
+                                </span>
+                            </li>
+
+                            <li>
+                                <h3>Personalizacja</h3>
+                                <span>
+                                    Zaproszenia można personalizować pod każdego gościa lub po wydarzenie. Można samodzielnie stworzyć szablon zaproszenia lub wybrać gotowy wariant i go edytować
+                                </span>
+                            </li>
+
+                            <li>
+                                <h3>Komunikacja</h3>
+                                <span>Goście po otrzymaniu zaproszenia na wydarzenie mogą dodać je do kalendarza w telefonie, oraz zaznaczyć czy wezmą udział</span>
+                            </li>
+
+                            <li>
+                                <h3>Ekologiczność</h3>
+                                <span>Brak konieczności drukowania tradycyjnych zaproszeń jest proekologiczne, ostatecznie tradycyjne zaproszenia i tak się gubią...</span>
+                            </li>
+
+                        </ul>
+                    </span>
+
+                    <h2 class="mt-4" id="rodzaje">Rodzaje zaproszeń</h2>
+                    <span>
+                        Dzięki możliwościom personalizacji, zaproszenie elektroniczne można wysłać na każde wydarzenie.
+
+                        <div class="swiper invitations-swiper">
+                            <div class="swiper-wrapper">
+                                {% for invitation in invitations %}
+                                  <div class="swiper-slide invitation" style="background-color: #f9f9f9;">
+                                    <img src="{% static invitation.image_path %}" alt="przykład zaproszenia"/>
+                                    <h5>{{ invitation.name }}</h5>
+                                    <a href="#" type="button" class="btn btn-block btn-outline-warning btn-sm invitation-button font-bold">Personalizuj</a>
+                                  </div>
+                                {% endfor %}
+                            </div>
+                          </div>
+
+
+                    </span>
+
+                    <h2 class="mt-4" id="proces_tworzenia">Jak działa proces tworzenia zaproszenia elektronicznego?</h2>
+                    <span>
+                        Tworzenia zaproszenia jest proste i intuicyjne.
+                        <ol>
+                            <li>Wybór lub wysłanie szablonu zaproszenia,</li>
+                            <li>Dodanie listy gości,</li>
+                            <li>Wybór sposobu dostawy zaproszenia.</li>
+                        </ol>
+                        Całość pokazana jest na <a href="#pomoc">poradniku</a>.
+                    </span>
+
+                    <h2 class="mt-4" id="funkcje_i_personalizacja">Funkcje i Opcje Personalizacji</h2>
+                    <span>
+                        Personalizacja odbywa się poprzez pobranie przykładowego zaproszenia oraz edycja tego elementu w edytorze graficznym (np. <a
+                            href="https://www.canva.com/">canva</a>). Można również wysłać gotowe już zaproszenie, które musi zawierać odpowiednio opisane fragmenty.
+                    </span>
+                    <span>
+                        Możliwe jest wysłanie różnych zaproszeń do różnych gości. Ogranicza nas tylko wyobraźnia!
+                    </span>
+
+                    <h2 class="mt-4" id="oferta">Oferta</h2>
+                    {% include 'landingpage/offer.html' with disable_header=True %}
+
+                    <h2 class="mt-4" id="opinie">Opinie i referencje klientów</h2>
+                    <span>
+                        Przed podjęciem decyzji o wyborze platformy do zaproszeń online, warto zapoznać się z opiniami innych użytkowników. Wiele firm publikuje na swoich stronach referencje od zadowolonych klientów oraz opinie użytkowników na temat oferowanych usług. Dobre recenzje mogą być decydującym czynnikiem przy wyborze najlepszej opcji.
+                    </span>
+
+
+                    <h2 class="mt-4" id="faq">FAQ - Najczęściej Zadawane Pytania</h2>
+                    <div class="accordion accordion-flush" id="faq-accordion">
+                        {% for faq_question in faq_questions %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-heading-{{ forloop.counter }}">
+                                    <button class="accordion-button collapsed font-weight-bold" style="font-size: 18px;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{ forloop.counter }}" aria-expanded="false" aria-controls="flush-collapse-{{ forloop.counter }}">
+                                        {{ faq_question.question }}
+                                    </button>
+                                </h2>
+                                <div id="flush-collapse-{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="flush-heading-{{ forloop.counter }}" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        {{ faq_question.answer }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <h2 class="mt-4" id="integracja">Integracje i Współpraca z Innymi Narzędziami</h2>
+                    <span>
+                        Nasza aplikacja współpracuje z większością komunikatorów, pozwala to na wysłanie zaproszenia za pomocą mediów społecznościowych, email'a, whatsup'a jak i SMS'a.<br>
+                        Umożliwiamy również edycję naszych zaproszeń w Canvie, jak i dodawanie gotowych już szablonów z tej strony. <br>
+                        Nasz Panel Użytkownika dostosowany jest do logowania kilkoma źródłami danych, tak aby rejestracja i logowanie były szybkie i przyjemne. <br>
+
+                    </span>
+
+                    <h2 class="mt-4" id="pomoc">Pomoc i Wsparcie Techniczne</h2>
+                    <span>
+                        Wsparcie techniczne jest dostępne od poniedziałku do soboty w godzinach 8-20 na infolinii pod numerem telefonu <b>+48 572 912 761</b>.<br>
+                        W pakietach zawierających wsparcie techniczne, jest możliwość zaplanowania rozmowy, i ustalenia tematu z góry. Taka rozmowa ma na celu nie tylko wytłumaczenie działania, ale również umożliwia stworzenie produktu przez naszych programistów tak aby odpowiadał on Państwa wymaganiom.
+                    </span>
+
+                    <h2 class="mt-4" id="blog">Blog i Aktualności</h2>
+                    {% include 'landingpage/blog.html' with disable_header=True %}
+
+                </div>
+			</div>
+		</div>
+	</section>
+</main>

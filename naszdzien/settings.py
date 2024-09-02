@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'landingpage',
-    'blog'
+    'blog',
+    'products',
 ]
 
 MIDDLEWARE = [
@@ -114,9 +115,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pl-pl'
+TIME_ZONE = 'Europe/Warsaw'
 
-TIME_ZONE = 'UTC'
+DATETIME_FORMAT = 'd-m-Y H:i:s'
+DATE_FORMAT = 'd-m-Y'
+TIME_FORMAT = 'H:i:s'
+
 
 USE_I18N = True
 
@@ -126,8 +131,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-
-STATIC_ROOT = '/home/dawid/Public/naszdzien/naszdzien/apps/landingpage/static/'
+STATIC_ROOT = '/home/dawid/Public/naszdzien/naszdzien/static/'
 MEDIA_ROOT = '/home/dawid/Public/naszdzien/naszdzien/media/'
 STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
@@ -137,3 +141,7 @@ MEDIA_URL = 'media/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_REDIRECT_URL = '/'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

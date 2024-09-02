@@ -1,0 +1,38 @@
+{% load static %}
+
+<style>
+    .border-gradient-wrapper {
+      position: relative;
+      background: linear-gradient(90deg, #b7ac88 0%, #f3b600 100%);
+      padding: 3px;
+    }
+</style>
+
+<section id="blog" class="w-100 d-flex flex-column align-items-center">
+    {% if not disable_header %}
+        <h3 class="allura-regular mb-0" style="padding-top: 120px; font-size: 60px; text-align: center;">Odkrywaj <span class="text-gradient">wyjątkowe pomysły</span></h3>
+        <span class="allura-regular" style="font-size: 30px; margin-bottom: 80px; text-align: center">Regularnie publikujemy nowe treści</span>
+    {% endif %}
+
+
+    <div class="blog-posts w-100 d-flex flex-wrap justify-content-center">
+        {% for post in blog_posts %}
+            <div style="position: relative; min-width: 200px; max-width: 500px; padding: 10px; min-height: 300px; width: 30%;" class="blog-post d-flex flex-column align-items-center justify-content-center">
+                <img loading="lazy" decoding="async"  class="w-75" style="height: 200px; object-fit: cover;" src="{{ post.image.url }}" alt="blog image">
+                <div class="container" style="">
+                    <div class="blog-publication-date">{{ post.created }}</div>
+                    <div class="blog-title mt-2" style="font-size:24px; ">{{ post.title }}</div>
+                    <div class="blog-description mt-2" style="text-align: justify;">{{ post.description }}</div>
+                    <a href="{{ post.get_absolute_url }}" class="d-flex text-gradient allura-regular mt-2 w-100 justify-content-end" style="font-size: 26px; border:none; color: #f3b600; font-weight: bold;">Przeczytaj</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="border-gradient-wrapper" style="margin-top: 40px;">
+        <a href="{% url 'blog:blog_posts' %}" class="p-2 d-flex" style='text-decoration:none; border: none; color: #333; background-color: #f9f9f9;'>
+            Zobacz więcej
+        </a>
+    </div>
+
+</section>
+

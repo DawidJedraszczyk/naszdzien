@@ -1,0 +1,160 @@
+{% load static math_filters %}
+
+<main id="najnowsze">
+    <section class="section">
+        <div class="container">
+          <div class="row no-gutters-lg">
+            <div class="col-lg-8 mb-5 mb-lg-0 d-flex align-items-center justify-content-between flex-wrap">
+                {% if current_tag %}
+                  <h2 class="section-title">Posty z tagiem: {{ current_tag.name }}</h2>
+                    <a href="{% url 'blog:blog_posts' %}" style="margin-bottom: 15px; color: #b7ac88;">Zobacz wszystkie posty</a>
+                {% else %}
+                  <h2 class="section-title">Najnowsze posty</h2>
+                {% endif %}
+            </div>
+            <div class="col-lg-8 mb-5 mb-lg-0">
+              <div class="row">
+              {% for post in posts %}
+                {% if not current_tag and forloop.counter == 1 %}
+                    <div class="col-12 mb-4">
+                      <article class="card article-card">
+                        <a href="{{ latest_post.get_absolute_url }}">
+                          <div class="card-image">
+                            <div class="post-info">
+                                <span class="text-uppercase">{{ latest_post.created }}</span>
+                            </div>
+                            <img loading="lazy" decoding="async" src="{{ latest_post.image.url }}" alt="blog post image" class="w-100">
+                          </div>
+                        </a>
+                        <div class="card-body px-0 pb-1">
+                          <ul class="post-meta mb-2">
+                            {% for post_tag in latest_post.tag_posts.all %}
+                                <li>
+                                    <span>{{ post_tag.tag.name }}<span>
+                                </li>
+                            {% endfor %}
+                          </ul>
+                          <h2 class="h1"><a class="post-title" href="{{ latest_post.get_absolute_url }}">{{ latest_post.title }}</a></h2>
+                          <p class="card-text">{{ latest_post.description }}</p>
+                          <div class="content"> <a class="read-more-btn" href="{{ latest_post.get_absolute_url }}">Przeczytaj</a>
+                          </div>
+                        </div>
+                      </article>
+                    </div>
+              {% else %}
+                <div class="col-md-6 mb-4">
+                  <article class="card article-card article-card-sm h-100">
+                    <a href="{{ post.get_absolute_url }}">
+                      <div class="card-image">
+                        <div class="post-info"> <span class="text-uppercase">{{ post.created }}</span>
+                        </div>
+                        <img loading="lazy" decoding="async" src="{{ post.image.url }}" alt="blog post image" class="w-100">
+                      </div>
+                    </a>
+                    <div class="card-body px-0 pb-0">
+                      <ul class="post-meta mb-2">
+                          {% for post_tag in post.tag_posts.all %}
+                              <li>
+                                  <span>{{ post_tag.tag.name }}<span>
+                              </li>
+                          {% endfor %}
+                      </ul>
+                      <h2><a class="post-title" href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                      <p class="card-text">{{ post.description }}</p>
+                      <div class="content"> <a class="read-more-btn" href="{{ post.get_absolute_url }}">Przeczytaj</a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                  {% endif %}
+                {% endfor %}
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-12">
+                      <nav class="mt-4">
+                        <!-- pagination -->
+                        <nav class="mb-md-50">
+                          <ul class="pagination justify-content-center">
+                              {% if page_obj.has_previous %}
+
+                                <li class="page-item">
+                                  <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Pagination Arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                                    </svg>
+                                  </a>
+                                </li>
+                                  {% if page_obj.previous_page_number != 1 %}
+
+                                    <li class="page-item ">
+                                        <a href="?page=1" class="page-link">
+                                            1
+                                          </a>
+                                    </li>
+                                    {% if page_obj.number|minus:2 > 1 %}
+                                        <li class="page-item disabled">
+                                            <a href="#" class="page-link">...</a>
+                                        </li>
+                                    {% endif %}
+                                  {% endif %}
+                                    <li class="page-item ">
+                                        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">
+                                            {{ page_obj.previous_page_number }}
+                                          </a>
+                                    </li>
+                              {% endif %}
+                            <li class="page-item active ">
+                                <a href="#" class="page-link">
+                                    {{ page_obj.number }}
+                                  </a>
+                            </li>
+                            <li class="page-item">
+                                {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a href="?page={{ page_obj.next_page_number }}" class="page-link">
+                                            {{ page_obj.next_page_number }}
+                                          </a>
+                                    </li>
+                                    {% if page_obj.next_page_number != page_obj.paginator.num_pages %}
+                                        {% if page_obj.number|add:2 < page_obj.paginator.num_pages %}
+                                            <li class="page-item disabled">
+                                                <a href="#" class="page-link">...</a>
+                                            </li>
+                                        {% endif %}
+                                        <li class="page-item">
+                                            <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">
+                                                {{ page_obj.paginator.num_pages }}
+                                              </a>
+                                        </li>
+                                    {% endif %}
+
+                                <li class="page-item">
+                                  <a class="page-link" style="" href="?page={{ page_obj.next_page_number }}" aria-label="Pagination Arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                                    </svg>
+                                  </a>
+                                </li>
+                                {% endif %}
+                            </li>
+                          </ul>
+                        </nav>
+                      </nav>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+      <div class="widget-blocks">
+        <div class="row">
+            {% include 'base/recommended_posts.html' %}
+            {% include 'base/categories.html' %}
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </section>
+</main>
+

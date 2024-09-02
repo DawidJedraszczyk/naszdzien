@@ -1,0 +1,34 @@
+{% extends './base/page.html' %}
+
+{% block title %}
+    Zróbmy to razem!
+{% endblock title %}
+
+{% block extra_css %}
+    <style>
+
+    </style>
+{% endblock extra_css %}
+
+{% block header %}
+    {% include './base/header.html' %}
+{% endblock header %}
+
+
+{% block content %}
+    {% include './main.html' %}
+    {% include './about_us.html' %}
+    {% include './products.html' %}
+    {% include './offer.html' %}
+    {% include './blog.html' %}
+
+{% endblock content %}
+
+
+{% block footer %}
+    {% include './base/footer.html' with actual_blog_posts_href="#blog" login_href="#" register_href="#" %}
+{% endblock footer %}
+
+
+{% block extra_js %}
+{% endblock extra_js %}

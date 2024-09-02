@@ -1,0 +1,51 @@
+{% extends 'landingpage/base/page.html' %}
+{% load static %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock title %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock extra_css %}
+
+{% block header %}
+    {% url 'landingpage:landing-page' as landing_page_url %}
+    {% url 'blog:blog_posts' as blog_href %}
+    {% include "landingpage/base/header.html" with main_href=landing_page_url about_us_href=landing_page_url|add:"#o-nas" products_href=landing_page_url|add:'#produkty' offer_href=landing_page_url|add:'#oferta' blog_href=blog_href login_href='#' register_href=landing_page_url|add:'#' %}
+{% endblock header %}
+
+
+{% block content %}
+    {% if product.name == 'Zaproszenia Elektroniczne' %}
+        {% include 'products/invitations.html' %}
+    {% else %}
+    {% endif %}
+{% endblock content %}
+
+
+{% block footer %}
+    {% url 'landingpage:landing-page' as landing_page_url %}
+    {% url 'blog:blog_posts' as blog_href %}
+    {% include 'landingpage/base/footer.html' with actual_blog_posts_href=blog_href|add:"#najnowsze" blog_href=blog_href login_href="#" register_href="#" %}
+{% endblock footer %}
+
+
+{% block extra_js %}
+    <script>
+        var swiper = new Swiper(".invitations-swiper", {
+          effect: "coverflow",
+          grabCursor: true,
+          loop: true,
+          centeredSlides: true,
+          slidesPerView: "auto",
+          coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          },
+        });
+  </script>
+{% endblock extra_js %}

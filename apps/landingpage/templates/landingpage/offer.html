@@ -1,0 +1,368 @@
+{% load static products_custom_filters %}
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Muli:400,700');
+    .wrapper {
+        width: 100%;
+    }
+    .text-bold {
+        font-weight: 600;
+    }
+    .pricing-content {
+        display: flex;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .PageWidth {
+        max-width: 1650px;
+        width: 100%;
+        margin: 30px auto;
+    }
+
+    .pricing-item {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        transition: all .3s;
+        width: 25%;
+        min-width: 300px;
+        min-height: 550px;
+    }
+
+    .pricing-item-box {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: 35px 25px;
+        transition: all .6s;
+        border: 2px solid #e9e9e9;
+        border-radius: 10px;
+        cursor: pointer;
+        position: relative;
+        min-height: 450px;
+    }
+
+    .plan-name {
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    .plan-text {
+        margin: 10px 0px;
+    }
+
+    .plan-price-content {
+        margin: 10px 0px;
+    }
+
+    .plan-price {
+        font-size: 26px;
+        font-weight: 600;
+        /* color: #316bd6; */
+    }
+
+    .plan-price-text {
+        color: #707070;
+        margin-top: 2px;
+    }
+
+    .month-text {
+        font-size: 13px;
+        font-weight: 500;
+        opacity: .6;
+    }
+
+    .plan-features {
+        flex: 1;
+    }
+
+    .plan-feature-item {
+        color: #707070;
+        margin: 10px 0;
+        /* font-size: 12px; */
+        display: flex;
+        align-items: center;
+    }
+
+    .plan-button a {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        border: 1px solid #b7ac88;
+        padding: 10px;
+        border-radius: 3px;
+        text-decoration: none;
+        color: #b7ac88;
+        transition: all .3s;
+
+    }
+
+    .plan-button {
+        display: flex;
+        margin-top: 20px;
+    }
+
+    .pricing-item:hover {
+        /* transform: scale(1.01); */
+    }
+
+    .plan-button a:hover {
+        background: #b7ac88;
+        color: #fff;
+    }
+
+    .pricing-item:hover .pricing-item-box {
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+        border-color: transparent;
+        transform: translateY(-10px);
+    }
+    .compare-button a {padding: 10px 20px;border: 1px solid #707070;color: #707070;text-transform: uppercase;text-decoration: none;border-radius: 3px;transition: all .3s;}
+
+    .compare-button a:hover {
+        background: #2e6ad4;
+        color: #fff;
+        border-color: #2e6ad4;
+    }
+
+    .plan-feature-item:before {content: "";width: 14px;height: 14px;/* border: 1px solid #a9a9a9; */background: #eee;margin-right: 7px;/* border-radius: 50px; */margin-bottom: 2px;}
+
+    .ribbon:before, .ribbon:after {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 0px;
+        bottom: -8px;
+        border: 13px solid #b7ac88;
+    }
+    .ribbon {
+        position: absolute;
+        right: 36px;
+        top: 17px;
+    }
+     .ribbon:before {
+         border-bottom-color: transparent;
+         bottom: -26px;
+     }
+
+    .fill-plan-table table {
+        width: 100%;
+        border-spacing: 0px;
+    }
+
+    .fill-plan-table table tr th {
+        padding: 15px 20px;
+        font-size: 15px;
+        width: 20%;
+    }
+
+    .fill-plan-table table tr th:nth-child(1), .fill-plan-table table tr td:nth-child(1) {
+        text-align: left;
+        width: 20%;
+        border-left: 0;
+    }
+
+    .fill-plan-table table tr td {
+        padding: 15px 20px;
+        text-align: center;
+        border-left: 1px solid #e4e4e4;
+        border-bottom: 1px solid #e4e4e4;
+    }
+
+    .p-card-btn a {
+        display: flex;
+        border: 1px solid #3069d4;
+        padding: 10px 20px;
+        border-radius: 3px;
+        text-decoration: none;
+        color: #3069d4;
+        transition: all .3s;
+    }
+
+    .p-card-btn a:hover {
+        background: #3069d4;
+        color: #fff;
+    }
+
+    .p-clt-img div {
+        width: 100%;
+        height: 100%;
+    }
+    .p-clt-img:nth-child(1) .p-clt-text {
+        background: #a17ce4;
+    }
+    .p-clt-img:nth-child(2) .p-clt-text {
+        background: #48d4b6;
+    }
+    .p-clt-img:nth-child(3) .p-clt-text {
+        background: #0ec9ec;
+    }
+    .p-clt-img:nth-child(4) .p-clt-text {
+        background: #6e8ff5;
+    }
+    .p-clt-img:nth-child(5) .p-clt-text {
+        background: #747c94;
+    }
+
+    .Update-btn a {
+        background: #f2f4f8;
+        text-decoration: none;
+        color: #000;
+        padding: 8px  15px;
+        font-size: 16px;
+        border-radius: 3px;
+        transition: all .3s;
+    }
+
+    .Update-btn a:hover {
+        color: #fff;
+        background: #3069d4;
+    }
+
+    .call-icon i {
+        font-size: 15px;
+        line-height: 25px;
+    }
+
+    .sp-text a {
+        color: #2580eb;
+        text-decoration: none;
+    }
+
+    .card-update-btn a {
+        display: flex;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #2e6ad4;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all .3s;
+    }
+
+    .card-update-btn a:hover {
+        color: #2f69d4;
+    }
+
+    .card-holder-name label {
+        text-transform: uppercase;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.42);
+    }
+
+    .card-valid label {
+        text-transform: uppercase;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.42);
+    }
+
+    .invoice-all-download a {
+        display: flex;
+        background: #f2f4f8;
+        padding: 5px 10px;
+        border-radius: 3px;
+        transition: all .3s;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .invoice-all-download a:hover {
+        background: #2f69d4;
+        color: #fff;
+    }
+
+    table.invoices-table {
+        width: 100%;
+        font-size: 15px;
+        color: #707070;
+        border-spacing: 0;
+    }
+
+    table.invoices-table tr th {
+        text-align: left;
+        padding: 8px 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    table.invoices-table tr td {
+        padding: 8px 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    table.invoices-table tr td:nth-child(5), table.invoices-table tr th:nth-child(5) {justify-content: flex-end;display: flex;}
+
+    table.invoices-table tr td:nth-child(1), table.invoices-table tr th:nth-child(1) {
+        width: 30%;
+    }
+    .pricing-content-items-tabs{
+        display: flex;
+        flex-direction: column;
+        padding: 50px 0px;
+    }
+    .pricing-yearly {
+        display: flex;
+        margin-bottom: 50px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+</style>
+
+<section id="oferta" class="w-100 d-flex flex-column align-items-center justify-content-center">
+    {% if not disable_header %}
+        <h3 class="allura-regular mb-0" style="padding-top: 120px; font-size: 60px; text-align: center;">Szczegóły <span class="text-gradient">naszej oferty</span></h3>
+        <span class="allura-regular" style="font-size: 30px; text-align: center">Wartościowe produkty za niską cenę</span>
+    {% endif %}
+
+    <div class="wrapper">
+		<div class="pricing-content">
+			<div class="PageWidth">
+				<div class="pricing-detail-content">
+
+                    <div class="pricing-content-items-tabs">
+                        <div class="pricing-yearly">
+                            {% for package in packages %}
+                                <div class="pricing-item">
+                                    <div class="pricing-item-box">
+                                    {% if forloop.last %}
+                                        <span class="ribbon"></span>
+                                    {% endif %}
+                                    <div class="plan-name">{{ package.name }}</div>
+                                    <div class="plan-text">{{ package.description|default:"" }}</div>
+
+                                    <div class="plan-price-content">
+                                        <div class="plan-price">{{ package.get_price }} zł<span class="month-text">/Rok</span></div>
+
+                                    </div>
+
+                                    <div class="plan-features">
+                                        {% for feature in package.features.all %}
+                                            <div class="plan-feature-item">{{ feature.name }}</div>
+                                        {% endfor %}
+                                        {% if package|has_product:"Zaproszenia Elektroniczne" %}
+                                            <div class="plan-feature-item">Zaproszenia Elektroniczne</div>
+                                        {% endif %}
+                                        {% if package|has_product:"Strona internetowa imprezy" %}
+                                            <div class="plan-feature-item">Strona internetowa imprezy</div>
+                                        {% endif %}
+                                        {% if package|has_product:"Zdjęcia z imprezy" %}
+                                            <div class="plan-feature-item">Zdjęcia z imprezy</div>
+                                        {% endif %}
+                                        {% if package.support %}
+                                            <div class="plan-feature-item">Wsparcie techniczne</div>
+                                        {% endif %}
+
+                                    </div>
+
+                                    <div class="plan-button"><a href="#">Zamów teraz</a></div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

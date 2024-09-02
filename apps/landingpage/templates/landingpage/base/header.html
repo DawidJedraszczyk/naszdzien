@@ -1,0 +1,171 @@
+<style>
+    .navbar {
+        background-color: #f9f9f9;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        min-height: 100px;
+        display: flex;
+        align-items: center;
+        z-index: 30;
+        justify-content: center;
+    }
+    .navbar-brand {
+        color: black !important;
+        font-size: 36px;
+    }
+    .nav-item {
+        display: flex;
+        align-items: center;
+    }
+    .nav-link {
+        color: black !important;
+        margin: 0 15px;
+    }
+    .nav-link:hover {
+        text-decoration: underline;
+        text-decoration-color: #c2b280;
+        text-decoration-thickness: 2px;
+    }
+
+
+    .burger-wrapper {
+        cursor: pointer;
+    }
+    #menu {
+        display: none;
+        background: #333;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        padding: 0 10%;
+        height: 100vh;
+        position: fixed;
+        right: 0;
+        transition: transform 0.5s cubic-bezier(0.5, 0.1, 0.1, 1);
+        transform: translateX(50rem);
+        top: 0;
+        z-index: 99;
+    }
+    #menu .nav-link {
+        color: #f9f9f9 !important;
+        font-size: 20px;
+    }
+    #menu-burger {
+        display: none;
+        position: fixed; /* Ensure the checkbox stays in a fixed position */
+        top: -100px; /* Move it out of the visible viewport */
+        left: -100px; /* Move it out of the visible viewport */
+    }
+    #menu-burger:checked ~ #menu {
+        transform: translateX(0);
+    }
+    #burger {
+        display: none;
+        position: fixed;
+        top: 20px;
+        right: 25px;
+        z-index: 100;
+        cursor: pointer;
+        width: 2rem;
+        min-height: 2rem;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    #burger > div {
+        min-height: 2px;
+        background-color: #000;
+        transition: 0.5s;
+        z-index: 999;
+    }
+    #menu-burger:checked ~ #burger > div {
+        background-color: #fff;
+    }
+    #menu-burger:checked ~ #burger > div:nth-child(1) {
+        transform: translateY(15px) rotate(45deg);
+    }
+    #menu-burger:checked ~ #burger > div:nth-child(2) {
+        opacity: 0;
+    }
+    #menu-burger:checked ~ #burger > div:nth-child(3) {
+        transform: translateY(-15px) rotate(-45deg);
+    }
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    @media only screen and (max-width: 990px) {
+        .hide-nav {
+            display: none;
+        }
+        .navbar {
+            min-height: 80px;
+        }
+        .navbar-brand {
+            font-size: 28px;
+        }
+        #menu-burger{
+            display: block;
+        }
+        #burger {
+            display: flex;
+        }
+        #menu {
+            display: flex;
+        }
+    }
+</style>
+<header>
+    <input type="checkbox" id="menu-burger">
+    <label id="burger" for="menu-burger" class="burger-wrapper">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
+
+    <nav class="navbar navbar-expand-lg w-100">
+        <div class="container">
+            <div class="row w-100 justify-content-between">
+                <ul class="col-lg-4 navbar-nav hide-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ about_us_href|default:'#o-nas' }}">O nas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ products_href|default:"#produkty" }}">Produkty</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ offer_href|default:"#oferta" }}">Oferta</a>
+                    </li>
+                </ul>
+
+                <div class="col-lg-4 d-flex justify-content-center align-items-center">
+                    <a class="navbar-brand allura-regular text-center" href="{{ main_href|default:"#" }}">Nasz<span class="text-gradient">Dzień</span></a>
+                </div>
+
+                <ul class="col-lg-4 navbar-nav justify-content-end hide-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ blog_href|default:"#blog" }}">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ login_href|default:"#" }}">Zaloguj</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #f3b600 !important; font-weight: 500;" href="{{ register_href|default:"#" }}">Zarejestruj</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="menu">
+        <a class="nav-link" href="{{ about_us_href|default:'#o-nas' }}" style="text-align: center;">Nasza Historia</a>
+        <a class="nav-link" href="{{ products_href|default:"#produkty" }}">Produkty</a>
+        <a class="nav-link" href="{{ offer_href|default:"#oferta" }}">Oferta</a>
+        <a class="nav-link" href="{{ blog_href|default:"#blog" }}">Blog</a>
+        <a class="nav-link" href="{{ login_href|default:"#" }}" style="margin-top: 30px;">Zaloguj</a>
+        <div class="border-gradient-wrapper" style="margin-top:10px; border-radius: 3px;">
+            <a class="nav-link" style="font-weight: 500;" href="{{ register_href|default:"#" }}">Zarejestruj</a>
+        </div>
+    </div>
+</header>

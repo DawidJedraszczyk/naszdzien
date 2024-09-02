@@ -1,0 +1,14 @@
+<div class="col-lg-12 col-md-6">
+    <div class="widget">
+      <h2 class="section-title mb-3">Kategorie</h2>
+      <div class="widget-body">
+        <ul class="widget-list">
+            {% for tag in tags %}
+              <li>
+                  <a href="{% url 'blog:blog_post_by_tag' tag.name %}">{{ tag.name }} <span class="ml-auto">({{ tag.tag_posts.count }})</span></a>
+              </li>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>

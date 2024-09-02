@@ -8,7 +8,9 @@ from django.conf.urls.static import static
 
 app_name = 'blog'
 urlpatterns = [
-    path('post/<slug:slug>/', PostDetail.as_view(), name='post_detail'),
+    path('', PostList.as_view(), name='blog_posts'),
+    path('<str:tag>/', PostList.as_view(), name='blog_post_by_tag'),
+    path('post/<str:slug>/', PostDetail.as_view(), name='post_detail'),
 ]
 
 if settings.DEBUG:
